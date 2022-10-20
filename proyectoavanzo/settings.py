@@ -78,7 +78,12 @@ WSGI_APPLICATION = 'proyectoavanzo.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'NAME': 'proyectoavanzo_db',
+        'USER': 'admin',
+        'PASSWORD': 'admin',
+        'HOST':'10.128.0.2',
+        'PORT':'',
+
     }
 }
 
