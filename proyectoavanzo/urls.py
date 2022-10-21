@@ -22,6 +22,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.index),
     path('', include('cliente.urls')),
+    path('', include('solicitud.urls')),
     path('health-check/', views.healthCheck),
 
 ]

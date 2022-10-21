@@ -8,11 +8,6 @@ from django.urls import reverse
 from .logic.logic_cliente import create_cliente
 
 # Create your views here.
-def cliente_list(request):
-    clientes = get_clientes()
-    context = {'clientes_list': clientes}
-    return render(request, 'cliente/cliente.html', context)
-
 def cliente_create(request):
     if request.method == 'POST':
         cliente_dto = create_cliente(json.loads(request.body))
