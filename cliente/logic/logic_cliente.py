@@ -7,4 +7,4 @@ def get_clientes():
 def create_cliente(form):
     cliente = form.save()
     cliente.save()
-    return ()
+    return cliente

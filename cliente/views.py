@@ -3,26 +3,14 @@ from .forms import ClienteForm
 from django.contrib import messages
 from django.http import HttpResponseRedirect
 from django.urls import reverse
-from .logic.logic_cliente import get_clientes, create_cliente
+from .logic.logic_cliente import create_cliente
 
 # Create your views here.
-def cliente_list(request):
-    clientes = get_clientes()
-    context = {'clientes_list': clientes}
-    return render(request, 'cliente/cliente.html', context)
 
 def cliente_create(request):
     if request.method == 'POST':
         form = ClienteForm(request.POST)
         if form.is_valid():
-            create_cliente(form)
-            messages.add_message(request, messages.SUCCESS, 'Cliente creado correctamente')
-            return HttpResponseRedirect(reverse('clienteCreate'))
-        else:
-            print(form.errors)
-    else:
-        form = ClienteForm()
-    
-    context = {'form': form}
-
-    return render(request, 'cliente/clienteCreate.html', context)
+            cliente = create_cliente(form)
+            return HttpResponse(cliente, status=200)
+        
