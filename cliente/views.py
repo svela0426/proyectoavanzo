@@ -12,5 +12,6 @@ def cliente_create(request):
         form = ClienteForm(request.POST)
         if form.is_valid():
             cliente = create_cliente(form)
-            return HttpResponse(cliente, status=200)
+            data = form.cleaned_data
+            return HttpResponse(data, status=200)
         
