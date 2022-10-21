@@ -8,7 +8,7 @@ from .logic.logic_solicitud import get_solicitudes, create_solicitud
 def solicitud_list(request):
     solicitudes = get_solicitudes()
     context = { 'solicitudes': solicitudes }
-    return render(request, 'solicitud/solicitud_list.html', context)
+    return render(request, 'solicitud/solicitud.html', context)
 
 def solicitud_create(request):
     if request.method == 'POST':
@@ -22,4 +22,4 @@ def solicitud_create(request):
     else:
         form = SolicitudForm()
     context = { 'form': form }
-    return render(request, 'solicitud/solicitud_create.html', context)
+    return render(request, 'solicitud/solicitudCreate.html', context)

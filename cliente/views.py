@@ -9,7 +9,7 @@ from .logic.logic_cliente import get_clientes, create_cliente
 def cliente_list(request):
     clientes = get_clientes()
     context = {'clientes_list': clientes}
-    return render(request, 'cliente/cliente_list.html', context)
+    return render(request, 'cliente/cliente.html', context)
 
 def cliente_create(request):
     if request.method == 'POST':
@@ -25,4 +25,4 @@ def cliente_create(request):
     
     context = {'form': form}
 
-    return render(request, 'cliente/cliente_create.html', context)
+    return render(request, 'cliente/clienteCreate.html', context)
