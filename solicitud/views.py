@@ -2,26 +2,24 @@ from django.shortcuts import render
 from django.contrib import messages
 from django.http import HttpResponseRedirect
 from django.urls import reverse
-from .forms import VariableForm
-from .logic.variable_logic import get_variables, create_variable
+from .forms import SolicitudForm
+from .logic.logic_solicitud import get_solicitudes, create_solicitud
 
-def variable_list(request):
-    variables = get_variables()
-    context = {'variables_list': variables}
-    return render(request, 'variable/variables.html', context)
+def solicitud_list(request):
+    solicitudes = get_solicitudes()
+    context = { 'solicitudes': solicitudes }
+    return render(request, 'solicitud/solicitud_list.html', context)
 
-def variable_create(request):
+def solicitud_create(request):
     if request.method == 'POST':
-        form = VariableForm(request.POST)
+        form = SolicitudForm(request.POST)
         if form.is_valid():
-            create_variable(form)
-            messages.success(request, 'Variable creada exitosamente')
-            return HttpResponseRedirect(reverse('variableCreate'))
+            create_solicitud(form)
+            messages.success(request, 'Solicitud creada exitosamente')
+            return HttpResponseRedirect(reverse('solicitudCreate'))
         else:
             print(form.errors)
     else:
-        form = VariableForm()
-
-    context = {'variables_list': variables}
-
-    return render(request, 'variable/variable_create.html', context)
+        form = SolicitudForm()
+    context = { 'form': form }
+    return render(request, 'solicitud/solicitud_create.html', context)

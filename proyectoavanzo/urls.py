@@ -16,13 +16,13 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import include, path
 
-from cliente import views
+from . import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.index),
     path('', include('cliente.urls')),
     path('', include('solicitud.urls')),
-    path('health-check/', views.health_check),
+    path('health-check/', views.healthCheck),
 
 ]
