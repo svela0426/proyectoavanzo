@@ -10,8 +10,7 @@ from .logic.logic_cliente import create_cliente
 def cliente_create(request):
     if request.method == 'POST':
         form = ClienteForm(request.POST)
-        if form.is_valid():
-            cliente = create_cliente(form)
-            data = form.cleaned_data
-            return HttpResponse(data, status=200)
+        cliente = create_cliente(form)
+        data = form.cleaned_data
+        return HttpResponse(data, status=200)
         
