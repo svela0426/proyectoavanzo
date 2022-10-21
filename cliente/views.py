@@ -5,7 +5,7 @@ from django.contrib import messages
 from django.http import HttpResponseRedirect
 from django.core import serializers
 from django.urls import reverse
-from .logic.logic_cliente import get_clientes, create_cliente
+from .logic.logic_cliente import create_cliente
 
 # Create your views here.
 def cliente_list(request):
