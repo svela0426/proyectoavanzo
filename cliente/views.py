@@ -1,20 +1,20 @@
+import json
 from django.shortcuts import HttpResponse, render
 from .forms import ClienteForm
 from django.contrib import messages
 from django.http import HttpResponseRedirect
+from django.core import serializers
 from django.urls import reverse
-from .logic.logic_cliente import create_cliente
+from .logic.logic_cliente import get_clientes, create_cliente
 
 # Create your views here.
+def cliente_list(request):
+    clientes = get_clientes()
+    context = {'clientes_list': clientes}
+    return render(request, 'cliente/cliente.html', context)
 
 def cliente_create(request):
     if request.method == 'POST':
-        form = ClienteForm(request.POST)
-        if form.is_valid():
-            create_cliente(form)
-            data = form.cleaned_data
-            return HttpResponse(data, status=200)
-
-        else:
-            return HttpResponse(form.errors, status=400)
-        
+        cliente_dto = create_cliente(json.loads(request.body))
+        cliente = serializers.serialize('json', [cliente_dto])
+        return HttpResponse(cliente, content_type='application/json')
