@@ -6,7 +6,7 @@ from django.utils import timezone
 # Create your models here.
 
 class Solicitud(models.Model):
-    cliente=models.ForeignKey( Cliente, on_delete=models.CASCADE, default=None)
+    cliente=models.CharField(max_length=50)
     monto= models.FloatField(null=True, blank=True , default=None)
     fecha= models.DateTimeField(default=timezone.now)
     cuotas=models.FloatField(null=True, blank=True , default=None)
