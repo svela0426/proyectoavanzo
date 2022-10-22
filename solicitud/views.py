@@ -14,3 +14,8 @@ def solicitud_create(request):
         solicitud_dto = create_solicitud(json.loads(request.body))
         solicitud = serializers.serialize('json', [solicitud_dto])
         return HttpResponse(solicitud, content_type='application/json')
+
+def procesar_solicitud(request):
+    if request.method == 'POST':
+        respuesta = procesar_solicitud(json.loads(request.body))
+        return HttpResponse(respuesta)
