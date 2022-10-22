@@ -11,7 +11,7 @@ def create_solicitud(form):
     solicitud.save()
     return solicitud
 
-def procesar_solicitud(form):
+def process_solicitud(form):
     solicitud = Solicitud(
         cliente=form["cliente"],
         monto=form["monto"],

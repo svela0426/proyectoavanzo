@@ -6,7 +6,7 @@ from django.http import HttpResponseRedirect
 from django.core import serializers
 from django.urls import reverse
 from .forms import SolicitudForm
-from .logic.logic_solicitud import create_solicitud
+from .logic.logic_solicitud import create_solicitud, process_solicitud	
 
 
 def solicitud_create(request):
@@ -15,7 +15,7 @@ def solicitud_create(request):
         solicitud = serializers.serialize('json', [solicitud_dto])
         return HttpResponse(solicitud, content_type='application/json')
 
-def procesar_solicitud(request):
+def solicitud_procesar(request):
     if request.method == 'POST':
-        respuesta = procesar_solicitud(json.loads(request.body))
+        respuesta = process_solicitud(json.loads(request.body))
         return HttpResponse(respuesta)
