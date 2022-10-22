@@ -18,7 +18,8 @@ def process_solicitud(form):
         cuotas=form["cuotas"],
         estado=form["estado"]
     )
+    
     tiempo_secs = random.randint(120,180)
-    scheduler = sched.scheduler(time.time, time.sleep)
-    scheduler.enter(tiempo_secs, 1, solicitud.save)
+    time.sleep(tiempo_secs)
+    solicitud.save()
     return solicitud
