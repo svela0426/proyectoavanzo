@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'cliente',
     'solicitud',
     'proyectoavanzo',
+    'social_django',
 ]
 
 MIDDLEWARE = [
@@ -142,3 +143,17 @@ STATICFILES_DIRS = (
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+LOGIN_URL = "/login/auth0"
+LOGIN_REDIRECT_URL = "/" 
+LOGOUT_REDIRECT_URL = "https://grupo5proyectoavanzo.us.auth0.com/v2/logout?returnTo=http%3A%2F%2F35.232.116.190:8080"
+
+SOCIAL_AUTH_TRAILING_SLASH = False # Remove end slash from routes
+SOCIAL_AUTH_AUTH0_DOMAIN = 'grupo5proyectoavanzo.us.auth0.com'
+SOCIAL_AUTH_AUTH0_KEY = 'xv09mgD9OeceKRsMTud06bZkyVaGeBuR'
+SOCIAL_AUTH_AUTH0_SECRET = 'JntKsAIyVz6lU1W3Io7aJHJFC4ASZp-Fi44E3lNITb0tDjwsfDXar2YMx6WIDf_h'
+
+SOCIAL_AUTH_AUTH0_SCOPE = [ 'openid', 'profile', 'email', 'role',]
+
+AUTHENTICATION_BACKENDS = { 'monitoring.auth0backend.Auth0',
+ 'django.contrib.auth.backends.ModelBackend', }
