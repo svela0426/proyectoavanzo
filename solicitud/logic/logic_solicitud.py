@@ -23,3 +23,7 @@ def process_solicitud(form):
     time.sleep(tiempo_secs)
     solicitud.save()
     return solicitud
+
+def get_solicitudes():
+    solicitudes = Solicitud.objects.all()
+    return solicitudes
