@@ -1,10 +1,5 @@
 from ..models import Solicitud
-import time, random, sched
-import queue as q
-import threading
-
-queue = q.Queue()
-
+import time, random
 
 def create_solicitud(form):
     solicitud = Solicitud(
@@ -16,26 +11,6 @@ def create_solicitud(form):
     solicitud.save()
     return solicitud
 
-
-def worker():
-    while True:
-        item = queue.get()
-        if item is not None:
-            start = time.time()
-            print("Procesando solicitud:",item)
-            tiempo_secs = random.randint(20,30)
-            if tiempo_secs%3 == 0:
-                item.estado = "Rechazada"
-            else:
-                item.estado = "Aprobada"
-            print("Estado:",item.estado)
-            end = time.time()
-            print("Procesada en:",end-start, "s")
-        else:
-            print("No hay solicitudes en la cola")
-            time.sleep(3)
-        queue.task_done()
-
 def process_solicitud(form):
     solicitud = Solicitud(
         cliente=form["cliente"],
@@ -43,22 +18,20 @@ def process_solicitud(form):
         cuotas=form["cuotas"],
         estado=form["estado"]
     )
-    
-    queue.put(solicitud)
-    print("Solicitud en cola:",solicitud.id)
-
-
+    start = time.time()
+    tiempo_secs = random.randint(20,30)
+    print("Sleep:",tiempo_secs)
+    time.sleep(tiempo_secs)
+    if tiempo_secs%3 == 0:
+        solicitud.estado = "Rechazada"
+    else:
+        solicitud.estado = "Aprobada"
+    print("Estado:",solicitud.estado)
+    end = time.time()
+    print("Procesada en:",end-start, "ms")
     solicitud.save()
     return solicitud
 
 def get_solicitudes():
     solicitudes = Solicitud.objects.all()
     return solicitudes
-
-def start_worker():
-    t = threading.Thread(target=worker)
-    t.daemon = True
-    t.start()
-
-
-start_worker()
