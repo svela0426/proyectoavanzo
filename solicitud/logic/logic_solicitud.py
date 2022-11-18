@@ -18,7 +18,7 @@ def process_solicitud(form):
         cuotas=form["cuotas"],
         estado=form["estado"]
     )
-    
+    start = time.time()
     tiempo_secs = random.randint(20,30)
     print("Sleep:",tiempo_secs)
     time.sleep(tiempo_secs)
@@ -27,7 +27,8 @@ def process_solicitud(form):
     else:
         solicitud.estado = "Aprobada"
     print("Estado:",solicitud.estado)
-    print("Procesada en:",tiempo_secs)
+    end = time.time()
+    print("Procesada en:",end-start, "ms")
     solicitud.save()
     return solicitud
 
