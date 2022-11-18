@@ -31,6 +31,9 @@ def worker():
             print("Estado:",item.estado)
             end = time.time()
             print("Procesada en:",end-start, "s")
+        else:
+            print("No hay solicitudes en la cola")
+            time.sleep(3)
         queue.task_done()
 
 def process_solicitud(form):
