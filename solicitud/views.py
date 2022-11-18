@@ -19,7 +19,7 @@ def solicitud_create(request):
             solicitud = serializers.serialize('json', [solicitud_dto])
             return HttpResponse(solicitud, content_type='application/json')
 
-@login_required
+
 def solicitud_procesar(request):
     if request.method == 'POST':
         respuesta = process_solicitud(json.loads(request.body))
