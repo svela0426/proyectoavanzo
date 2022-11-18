@@ -6,7 +6,7 @@ from django.http import HttpResponseRedirect
 from django.core import serializers
 from django.urls import reverse
 from .forms import SolicitudForm
-from .logic.logic_solicitud import create_solicitud, process_solicitud, get_solicitudes
+from .logic.logic_solicitud import create_solicitud, process_solicitud, get_solicitudes, start_worker
 from django.contrib.auth.decorators import login_required
 from proyectoavanzo.auth0backend import getRole
 
@@ -22,6 +22,7 @@ def solicitud_create(request):
 
 def solicitud_procesar(request):
     if request.method == 'POST':
+        start_worker()
         respuesta = process_solicitud(json.loads(request.body))
         return HttpResponse(respuesta)
 
