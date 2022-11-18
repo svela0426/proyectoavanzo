@@ -19,18 +19,18 @@ def solicitud_create(request):
             solicitud = serializers.serialize('json', [solicitud_dto])
             return HttpResponse(solicitud, content_type='application/json')
 
-
+@login_required
 def solicitud_procesar(request):
     if request.method == 'POST':
         respuesta = process_solicitud(json.loads(request.body))
         return HttpResponse(respuesta)
 
-@login_required
+#@login_required
 def solicitud_list(request):
-    role = getRole(request)
-    if role == "Cliente":
+    #role = getRole(request)
+    #if role == "Cliente":
         solicitudes = get_solicitudes()
         return HttpResponse(serializers.serialize('json', solicitudes), content_type='application/json')
-    else:
-        messages.error(request, 'No tienes permisos para acceder a esta página')
-        return HttpResponseRedirect(reverse('home'))
+    #else:
+        #messages.error(request, 'No tienes permisos para acceder a esta página')
+        #return HttpResponseRedirect(reverse('home'))
