@@ -20,18 +20,17 @@ def create_solicitud(form):
 def worker():
     while True:
         item = queue.get()
-        if item is None:
-            continue
-        start = time.time()
-        print("Procesando solicitud:",item.id)
-        tiempo_secs = random.randint(20,30)
-        if tiempo_secs%3 == 0:
-            item.estado = "Rechazada"
-        else:
-            item.estado = "Aprobada"
-        print("Estado:",item.estado)
-        end = time.time()
-        print("Procesada en:",end-start, "s")
+        if item is not None:
+            start = time.time()
+            print("Procesando solicitud:",item.id)
+            tiempo_secs = random.randint(20,30)
+            if tiempo_secs%3 == 0:
+                item.estado = "Rechazada"
+            else:
+                item.estado = "Aprobada"
+            print("Estado:",item.estado)
+            end = time.time()
+            print("Procesada en:",end-start, "s")
         queue.task_done()
 
 def process_solicitud(form):
