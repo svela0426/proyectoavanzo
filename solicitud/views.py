@@ -22,7 +22,6 @@ def solicitud_create(request):
 
 def solicitud_procesar(request):
     if request.method == 'POST':
-        start_worker()
         respuesta = process_solicitud(json.loads(request.body))
         return HttpResponse(respuesta)
 

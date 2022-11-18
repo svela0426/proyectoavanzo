@@ -22,7 +22,7 @@ def worker():
         item = queue.get()
         if item is not None:
             start = time.time()
-            print("Procesando solicitud:",item.id)
+            print("Procesando solicitud:",item)
             tiempo_secs = random.randint(20,30)
             if tiempo_secs%3 == 0:
                 item.estado = "Rechazada"
@@ -45,6 +45,7 @@ def process_solicitud(form):
     )
     
     queue.put(solicitud)
+    print("Solicitud en cola:",solicitud.id)
 
 
     solicitud.save()
@@ -60,3 +61,4 @@ def start_worker():
     t.start()
 
 
+start_worker()
