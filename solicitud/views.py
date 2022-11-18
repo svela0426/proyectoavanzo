@@ -6,7 +6,7 @@ from django.http import HttpResponseRedirect
 from django.core import serializers
 from django.urls import reverse
 from .forms import SolicitudForm
-from .logic.logic_solicitud import create_solicitud, process_solicitud, get_solicitudes, start_worker
+from .logic.logic_solicitud import create_solicitud, process_solicitud, get_solicitudes
 from django.contrib.auth.decorators import login_required
 from proyectoavanzo.auth0backend import getRole
 
