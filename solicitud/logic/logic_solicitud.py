@@ -19,7 +19,7 @@ def process_solicitud(form):
         estado=form["estado"]
     )
     
-    tiempo_secs = random.randint(120,180)
+    tiempo_secs = random.randint(20,30)
     time.sleep(tiempo_secs)
     solicitud.save()
     return solicitud
