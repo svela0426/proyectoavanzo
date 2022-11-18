@@ -20,7 +20,14 @@ def process_solicitud(form):
     )
     
     tiempo_secs = random.randint(20,30)
+    print("Sleep:",tiempo_secs)
     time.sleep(tiempo_secs)
+    if tiempo_secs%3 == 0:
+        solicitud.estado = "Rechazada"
+    else:
+        solicitud.estado = "Aprobada"
+    print("Estado:",solicitud.estado)
+    print("Procesada en:",tiempo_secs)
     solicitud.save()
     return solicitud
 
