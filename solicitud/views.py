@@ -30,6 +30,7 @@ def solicitud_list(request):
     #role = getRole(request)
     #if role == "Cliente":
         solicitudes = get_solicitudes()
+        
         return HttpResponse(serializers.serialize('json', solicitudes), content_type='application/json')
     #else:
         #messages.error(request, 'No tienes permisos para acceder a esta página')
