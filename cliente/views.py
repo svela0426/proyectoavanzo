@@ -14,4 +14,4 @@ def cliente_create(request):
     if request.method == 'POST':
         cliente_dto = create_cliente(json.loads(request.body))
         cliente = serializers.serialize('json', [cliente_dto])
-        return render(request, 'cliente.html')
+        return HttpResponse(cliente, content_type='application/json')
