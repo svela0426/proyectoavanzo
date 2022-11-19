@@ -36,7 +36,7 @@ def solicitud_list(request):
         messages.error(request, 'No tienes permisos para acceder a esta página')
         return HttpResponseRedirect(reverse('home'))
 
-@login_required
+
 def solicitud_list1(request):
     #role = getRole(request)
     #if role == "Cliente":
