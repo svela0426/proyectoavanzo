@@ -25,7 +25,7 @@ def solicitud_procesar(request):
         respuesta = process_solicitud(json.loads(request.body))
         return HttpResponse(respuesta)
 
-#@login_required
+@login_required
 def solicitud_list(request):
     #role = getRole(request)
     #if role == "Cliente":
