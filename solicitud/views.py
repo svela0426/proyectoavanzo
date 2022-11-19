@@ -31,10 +31,10 @@ def solicitud_list(request):
     role = getRole(request)
     if role == "Cliente":
         solicitudes = get_solicitudes()
-        return HttpResponse(serializers.serialize('json', solicitudes), content_type='application/json')
+        return render(request, 'cliente.html')
     else:
         messages.error(request, 'No tienes permisos para acceder a esta página')
-        return HttpResponseRedirect(reverse('home'))
+        return render(request, 'error.html')
 
 
 def solicitud_list1(request):
@@ -46,6 +46,3 @@ def solicitud_list1(request):
         #messages.error(request, 'No tienes permisos para acceder a esta página')
         #return HttpResponseRedirect(reverse('home'))
 
-@login_required
-def solicitudes_view(request):
-    return render(request, 'cliente.html')
