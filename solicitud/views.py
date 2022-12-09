@@ -28,13 +28,13 @@ def solicitud_procesar(request):
 
 
 def solicitud_list(request):
-    role = getRole(request)
-    if role == "Cliente":
-        solicitudes = get_solicitudes()
-        return render(request, 'cliente.html')
-    else:
-        messages.error(request, 'No tienes permisos para acceder a esta página')
-        return render(request, 'error.html')
+    #role = getRole(request)
+    #if role == "Cliente":
+    solicitudes = get_solicitudes()
+    return render(request, 'cliente.html')
+    #else:
+        #messages.error(request, 'No tienes permisos para acceder a esta página')
+        #return render(request, 'error.html')
 
 
 def solicitud_list1(request):
